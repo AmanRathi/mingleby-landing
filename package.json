@@ -1,0 +1,12 @@
+{
+  "name": "mingleby-landing",
+  "version": "1.0.0",
+  "description": "Landing page to get subscribers details",
+  "license": "ISC",
+  "author": "Aman Rathi",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
