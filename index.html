@@ -523,12 +523,22 @@ class Component extends DCLogic {
     const s = { ...this.state, ...extra };
     try { localStorage.setItem('mingleby_signup_v1', JSON.stringify({ ...s.form, leadId: s.leadId, interests: s.interests, city: s.city })); } catch (e) {}
   }
-  // Swap these for real fetch() calls: POST /api/signup → {lead_id}; PATCH /api/signup/{lead_id}
-  fakeApi(payload, ms) {
-    return new Promise((res, rej) => setTimeout(() => {
-      if (this.props.simulateError || /fail/i.test(payload.email || '')) rej(new Error('fail'));
-      else res({ lead_id: 'ld_' + Math.random().toString(36).slice(2, 9) });
-    }, ms));
+  // Google Apps Script web app URL (Deploy → Web app → copy the URL ending in /exec). See apps-script/Code.gs.
+  SHEET_URL = 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
+  newLeadId() {
+    return 'ld_' + (crypto.randomUUID ? crypto.randomUUID().replace(/-/g, '').slice(0, 12) : Date.now().toString(36) + Math.random().toString(36).slice(2, 8));
+  }
+  // text/plain keeps this a "simple" CORS request (no preflight), which Apps Script requires.
+  async api(payload) {
+    if (this.props.simulateError || /fail/i.test(payload.email || '')) throw new Error('fail');
+    const res = await fetch(this.SHEET_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ ...payload, page: location.href, user_agent: navigator.userAgent }),
+    });
+    const data = await res.json();
+    if (!data.ok) throw new Error(data.error || 'fail');
+    return data;
   }
   validate() {
     const f = this.state.form, errors = {};
@@ -543,17 +553,25 @@ class Component extends DCLogic {
     const f = this.state.form;
     this.track('step1_submit', { source });
     try {
-      const r = await this.fakeApi({ name: f.name, partner_name: f.partner, email: f.email, source, ...this.utm() }, 900);
-      this.setState({ loading: false, leadId: r.lead_id, step: 2, modalOpen: true }, () => this.persist());
+      const leadId = this.newLeadId();
+      const r = await this.api({ action: 'signup', lead_id: leadId, name: f.name.trim(), partner_name: f.partner.trim(), email: f.email.trim(), source, ...this.utm() });
+      this.setState({ loading: false, leadId: r.lead_id || leadId, step: 2, modalOpen: true }, () => this.persist());
     } catch (e) {
       this.setState({ loading: false, apiError: "Oops, that didn't go through. Try again?" });
     }
   }
   async finish(skip) {
-    if (skip) { this.track('step2_skip'); this.success(); return; }
+    const s = this.state, f = s.form;
+    // Name/email ride along so the sheet can still create the row if step 1's row is missing.
+    const payload = { action: 'interests', lead_id: s.leadId, name: f.name.trim(), partner_name: f.partner.trim(), email: f.email.trim(), source: s.source, ...this.utm() };
+    if (skip) {
+      this.track('step2_skip');
+      this.api({ ...payload, status: 'skipped' }).catch(() => {});
+      this.success(); return;
+    }
     this.setState({ loading: true });
-    this.track('step2_submit', { interests: this.state.interests, city: this.state.city });
-    try { await this.fakeApi({ interests: this.state.interests, city: this.state.city }, 700); } catch (e) {}
+    this.track('step2_submit', { interests: s.interests, city: s.city });
+    try { await this.api({ ...payload, status: 'completed', interests: s.interests.join(', '), city: s.city.trim() }); } catch (e) {}
     this.setState({ loading: false }); this.success();
   }
   success() {
