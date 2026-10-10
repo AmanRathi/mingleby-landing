@@ -524,7 +524,7 @@ class Component extends DCLogic {
     try { localStorage.setItem('mingleby_signup_v1', JSON.stringify({ ...s.form, leadId: s.leadId, interests: s.interests, city: s.city })); } catch (e) {}
   }
   // Google Apps Script web app URL (Deploy → Web app → copy the URL ending in /exec). See apps-script/Code.gs.
-  SHEET_URL = 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
+  SHEET_URL = 'https://script.google.com/macros/s/AKfycbxv2BY9-e5SpqfiQcZr7KBtcVVXVvpnvEC9jGDYSEm0Qqa0EuVN4u8wItOKjwoOPJP5Zg/exec';
   newLeadId() {
     return 'ld_' + (crypto.randomUUID ? crypto.randomUUID().replace(/-/g, '').slice(0, 12) : Date.now().toString(36) + Math.random().toString(36).slice(2, 8));
   }
