@@ -1,17 +1,17 @@
 /**
  * Mingleby signups → Google Sheet.
  *
- * Step 1 ("signup")    appends a row with name/email right away.
+ * Step 1 ("signup")    appends a row with name/mobile right away.
  * Step 2 ("interests") finds that row by lead_id and fills in interests/city.
  *                      If the row is missing, it appends a full row instead,
- *                      so name and email are never lost.
+ *                      so name and mobile are never lost.
  *
  * Setup: see apps-script/README.md
  */
 
 const SHEET_NAME = 'Signups';
 const HEADERS = [
-  'lead_id', 'created_at', 'updated_at', 'name', 'partner_name', 'email', 'source',
+  'lead_id', 'created_at', 'updated_at', 'name', 'partner_name', 'mobile', 'source',
   'interests', 'city', 'step2_status',
   'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content',
   'page', 'user_agent',
@@ -29,7 +29,7 @@ function doPost(e) {
     const now = new Date();
 
     if (data.action === 'signup') {
-      if (!data.email) throw new Error('missing email');
+      if (!/^[6-9]\d{9}$/.test(String(data.mobile || ''))) throw new Error('invalid mobile');
       appendRow_(sheet, { ...data, created_at: now, updated_at: now, step2_status: 'pending' });
     } else if (data.action === 'interests') {
       const values = { ...data, step2_status: data.status || 'completed', updated_at: now };
@@ -62,10 +62,12 @@ function doGet() {
 function getSheet_() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
-  if (sheet.getLastRow() === 0) {
-    sheet.appendRow(HEADERS);
+  const header = sheet.getRange(1, 1, 1, HEADERS.length);
+  if (header.getValues()[0].join() !== HEADERS.join()) {
+    header.setValues([HEADERS]).setFontWeight('bold');
     sheet.setFrozenRows(1);
-    sheet.getRange(1, 1, 1, HEADERS.length).setFontWeight('bold');
+    // Store mobiles as plain text so Sheets doesn't treat them as numbers.
+    if (sheet.getMaxRows() > 1) sheet.getRange(2, HEADERS.indexOf('mobile') + 1, sheet.getMaxRows() - 1, 1).setNumberFormat('@');
   }
   return sheet;
 }

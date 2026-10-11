@@ -262,14 +262,14 @@ details>summary{list-style:none}details>summary::-webkit-details-marker{display:
           <input value="{{ form.name }}" onChange="{{ setName }}" autoComplete="given-name" style="height:58px;border:2.5px solid #1C1426;border-radius:16px;padding:0 18px;font:500 17px/1 'DM Sans',sans-serif;background:#FFF8EC;color:#1C1426;outline:none;box-sizing:border-box;width:100%" style-focus="box-shadow:0 0 0 4px #E6007E"></input>
           <sc-if value="{{ errors.name }}" hint-placeholder-val="{{ false }}"><span style="font:700 14px/1.3 'DM Sans',sans-serif;color:#1C1426">● {{ errors.name }}</span></sc-if>
         </label>
-        <label style="flex:1.4 1 260px;display:flex;flex-direction:column;gap:8px;font:700 15px/1 'DM Sans',sans-serif">Email
-          <input type="email" value="{{ form.email }}" onChange="{{ setEmail }}" autoComplete="email" inputMode="email" style="height:58px;border:2.5px solid #1C1426;border-radius:16px;padding:0 18px;font:500 17px/1 'DM Sans',sans-serif;background:#FFF8EC;color:#1C1426;outline:none;box-sizing:border-box;width:100%" style-focus="box-shadow:0 0 0 4px #E6007E"></input>
-          <sc-if value="{{ errors.email }}" hint-placeholder-val="{{ false }}"><span style="font:700 14px/1.3 'DM Sans',sans-serif;color:#1C1426">● {{ errors.email }}</span></sc-if>
+        <label style="flex:1.4 1 260px;display:flex;flex-direction:column;gap:8px;font:700 15px/1 'DM Sans',sans-serif">Mobile number
+          <span style="position:relative;display:block"><span aria-hidden="true" style="position:absolute;left:18px;top:50%;transform:translateY(-50%);font:600 17px/1 'DM Sans',sans-serif;color:#1C1426;opacity:.7;pointer-events:none">+91</span><input type="tel" value="{{ form.mobile }}" onChange="{{ setMobile }}" autoComplete="tel-national" inputMode="numeric" maxLength="{{ 14 }}" placeholder="98765 43210" aria-label="Mobile number (India, +91)" style="height:58px;border:2.5px solid #1C1426;border-radius:16px;padding:0 18px 0 60px;font:500 17px/1 'DM Sans',sans-serif;background:#FFF8EC;color:#1C1426;outline:none;box-sizing:border-box;width:100%" style-focus="box-shadow:0 0 0 4px #E6007E"></input></span>
+          <sc-if value="{{ errors.mobile }}" hint-placeholder-val="{{ false }}"><span style="font:700 14px/1.3 'DM Sans',sans-serif;color:#1C1426">● {{ errors.mobile }}</span></sc-if>
         </label>
         <button type="submit" style="flex:1 1 200px;margin-top:23px;position:relative;overflow:hidden;height:58px;background:#E6007E;color:#FFF8EC;border:2.5px solid #1C1426;border-radius:999px;font:700 18px/1 'DM Sans',sans-serif;cursor:pointer;box-shadow:4px 4px 0 #1C1426;transition:transform .15s cubic-bezier(.3,1.6,.5,1),box-shadow .15s" style-active="transform:translate(4px,4px) scale(.97);box-shadow:0 0 0 #1C1426" style-after="content:'';position:absolute;top:0;left:0;width:40%;height:100%;background:rgba(255,248,236,.35);animation:shine 4s 1s ease-in-out infinite">{{ inlineLabel }}</button>
       </form>
       <sc-if value="{{ apiError }}" hint-placeholder-val="{{ false }}"><span style="font:700 15px/1.3 'DM Sans',sans-serif">{{ apiError }}</span></sc-if>
-      <p style="margin:0;font:500 14px/1.4 'DM Sans',sans-serif">No spam. We'll only email you about Mingleby.</p>
+      <p style="margin:0;font:500 14px/1.4 'DM Sans',sans-serif">No spam. We'll only contact you about Mingleby.</p>
     </div>
   </section>
 
@@ -335,9 +335,9 @@ details>summary{list-style:none}details>summary::-webkit-details-marker{display:
             <label style="display:flex;flex-direction:column;gap:6px;font:700 15px/1 'DM Sans',sans-serif"><span>Partner's name <span style="font-weight:500;color:#5E5068">(optional)</span></span>
               <input value="{{ form.partner }}" onChange="{{ setPartner }}" style="height:52px;border:2.5px solid #1C1426;border-radius:14px;padding:0 16px;font:500 17px/1 'DM Sans',sans-serif;background:#FFFFFF;color:#1C1426;outline:none;box-sizing:border-box;width:100%" style-focus="box-shadow:0 0 0 4px #FFD23F"></input>
             </label>
-            <label style="display:flex;flex-direction:column;gap:6px;font:700 15px/1 'DM Sans',sans-serif">Email
-              <input type="email" value="{{ form.email }}" onChange="{{ setEmail }}" autoComplete="email" inputMode="email" style="height:52px;border:2.5px solid #1C1426;border-radius:14px;padding:0 16px;font:500 17px/1 'DM Sans',sans-serif;background:#FFFFFF;color:#1C1426;outline:none;box-sizing:border-box;width:100%" style-focus="box-shadow:0 0 0 4px #FFD23F"></input>
-              <sc-if value="{{ errors.email }}" hint-placeholder-val="{{ false }}"><span style="font:700 14px/1.3 'DM Sans',sans-serif;color:#C2006A">{{ errors.email }}</span></sc-if>
+            <label style="display:flex;flex-direction:column;gap:6px;font:700 15px/1 'DM Sans',sans-serif">Mobile number
+              <span style="position:relative;display:block"><span aria-hidden="true" style="position:absolute;left:18px;top:50%;transform:translateY(-50%);font:600 17px/1 'DM Sans',sans-serif;color:#1C1426;opacity:.7;pointer-events:none">+91</span><input type="tel" value="{{ form.mobile }}" onChange="{{ setMobile }}" autoComplete="tel-national" inputMode="numeric" maxLength="{{ 14 }}" placeholder="98765 43210" aria-label="Mobile number (India, +91)" style="height:52px;border:2.5px solid #1C1426;border-radius:14px;padding:0 16px 0 60px;font:500 17px/1 'DM Sans',sans-serif;background:#FFFFFF;color:#1C1426;outline:none;box-sizing:border-box;width:100%" style-focus="box-shadow:0 0 0 4px #FFD23F"></input></span>
+              <sc-if value="{{ errors.mobile }}" hint-placeholder-val="{{ false }}"><span style="font:700 14px/1.3 'DM Sans',sans-serif;color:#C2006A">{{ errors.mobile }}</span></sc-if>
             </label>
             <sc-if value="{{ apiError }}" hint-placeholder-val="{{ false }}"><span style="background:#FF3B5C;color:#1C1426;border:2px solid #1C1426;border-radius:12px;padding:10px 14px;font:700 15px/1.3 'DM Sans',sans-serif">{{ apiError }}</span></sc-if>
             <button type="submit" disabled="{{ loading }}" style="margin-top:4px;height:58px;background:#E6007E;color:#FFF8EC;border:2.5px solid #1C1426;border-radius:999px;font:700 18px/1 'DM Sans',sans-serif;cursor:pointer;box-shadow:4px 4px 0 #1C1426;display:flex;align-items:center;justify-content:center;gap:10px;transition:transform .15s cubic-bezier(.3,1.6,.5,1),box-shadow .15s" style-active="transform:translate(4px,4px) scale(.97);box-shadow:0 0 0 #1C1426">
@@ -370,7 +370,7 @@ details>summary{list-style:none}details>summary::-webkit-details-marker{display:
             <div style="position:absolute;left:50%;top:60px;width:0;height:0">{{ confetti }}</div>
             <span style="display:block;width:110px;height:110px;animation:clink .6s .2s ease 3"><img src="assets/logo/lockup-on-yellow-icon-only.svg" alt="" style="display:block;width:100%;height:100%;object-fit:contain"></img></span>
             <h2 style="margin:0;font:800 clamp(34px,5vw,44px)/1 'Bricolage Grotesque',sans-serif;letter-spacing:-0.035em">Cheers! 🥂 You're on the list.</h2>
-            <p style="margin:0;max-width:38ch;font:400 17px/1.5 'DM Sans',sans-serif;text-wrap:pretty">We'll email you as soon as hangouts open near you. Psst — couples who share Mingleby with friends get in first.</p>
+            <p style="margin:0;max-width:38ch;font:400 17px/1.5 'DM Sans',sans-serif;text-wrap:pretty">We'll let you know as soon as hangouts open near you. Psst — couples who share Mingleby with friends get in first.</p>
             <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:6px">
               <a href="{{ waLink }}" target="_blank" rel="noopener" onClick="{{ shareWa }}" style="min-height:48px;padding:0 20px;display:flex;align-items:center;border:2.5px solid #1C1426;border-radius:999px;background:#FFD23F;color:#1C1426;text-decoration:none;font:700 16px/1 'DM Sans',sans-serif;box-shadow:3px 3px 0 #1C1426">WhatsApp</a>
               <a href="https://instagram.com" target="_blank" rel="noopener" onClick="{{ shareIg }}" style="min-height:48px;padding:0 20px;display:flex;align-items:center;border:2.5px solid #1C1426;border-radius:999px;background:#FFD23F;color:#1C1426;text-decoration:none;font:700 16px/1 'DM Sans',sans-serif;box-shadow:3px 3px 0 #1C1426">Instagram</a>
@@ -432,10 +432,10 @@ class Component extends DCLogic {
     try { saved = JSON.parse(localStorage.getItem('mingleby_signup_v1') || '{}'); } catch (e) {}
     return {
       w: typeof window !== 'undefined' ? window.innerWidth : 1200,
-      menuOpen: false, modalOpen: false, step: saved.leadId ? 2 : 1,
-      form: { name: saved.name || '', partner: saved.partner || '', email: saved.email || '' },
-      errors: {}, apiError: '', loading: false, leadId: saved.leadId || null,
-      interests: saved.interests || [], city: saved.city || '', bounced: null,
+      menuOpen: false, modalOpen: false, step: 1,
+      form: { name: saved.name || '', partner: saved.partner || '', mobile: saved.mobile || '' },
+      errors: {}, apiError: '', loading: false, leadId: null,
+      interests: [], city: '', bounced: null,
       clinkN: 0, clinkOn: false, cheers: false, rain: null, burst: null,
       hoverAct: null, dot: { x: 78, y: 18 }, dotHappy: false, dragging: false,
       lit: 0, footerFive: false, copied: false, source: 'hero',
@@ -523,7 +523,8 @@ class Component extends DCLogic {
   }
   persist(extra = {}) {
     const s = { ...this.state, ...extra };
-    try { localStorage.setItem('mingleby_signup_v1', JSON.stringify({ ...s.form, leadId: s.leadId, interests: s.interests, city: s.city })); } catch (e) {}
+    // Only contact details are kept (to pre-fill on return); every new visit starts the signup at step 1.
+    try { localStorage.setItem('mingleby_signup_v1', JSON.stringify(s.form)); } catch (e) {}
   }
   // Google Apps Script web app URL (Deploy → Web app → copy the URL ending in /exec). See apps-script/Code.gs.
   SHEET_URL = 'https://script.google.com/macros/s/AKfycbxv2BY9-e5SpqfiQcZr7KBtcVVXVvpnvEC9jGDYSEm0Qqa0EuVN4u8wItOKjwoOPJP5Zg/exec';
@@ -532,7 +533,7 @@ class Component extends DCLogic {
   }
   // text/plain keeps this a "simple" CORS request (no preflight), which Apps Script requires.
   async api(payload) {
-    if (this.props.simulateError || /fail/i.test(payload.email || '')) throw new Error('fail');
+    if (this.props.simulateError) throw new Error('fail');
     const res = await fetch(this.SHEET_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
@@ -542,10 +543,17 @@ class Component extends DCLogic {
     if (!data.ok) throw new Error(data.error || 'fail');
     return data;
   }
+  // Indian mobile → 10 digits. Accepts spaces/dashes and a pasted +91, 91 or 0 prefix; null if invalid.
+  mobile(v) {
+    let d = String(v || '').replace(/\D/g, '');
+    if (d.length === 12 && d.startsWith('91')) d = d.slice(2);
+    else if (d.length === 11 && d.startsWith('0')) d = d.slice(1);
+    return /^[6-9]\d{9}$/.test(d) ? d : null;
+  }
   validate() {
     const f = this.state.form, errors = {};
     if (!f.name.trim()) errors.name = "What should we call you?";
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.email.trim())) errors.email = "Hmm, that email looks a bit off.";
+    if (!this.mobile(f.mobile)) errors.mobile = "Please enter a valid 10-digit mobile number.";
     this.setState({ errors });
     return !Object.keys(errors).length;
   }
@@ -556,7 +564,7 @@ class Component extends DCLogic {
     this.track('step1_submit', { source });
     try {
       const leadId = this.newLeadId();
-      const r = await this.api({ action: 'signup', lead_id: leadId, name: f.name.trim(), partner_name: f.partner.trim(), email: f.email.trim(), source, ...this.utm() });
+      const r = await this.api({ action: 'signup', lead_id: leadId, name: f.name.trim(), partner_name: f.partner.trim(), mobile: this.mobile(f.mobile), source, ...this.utm() });
       this.setState({ loading: false, leadId: r.lead_id || leadId, step: 2, modalOpen: true }, () => this.persist());
     } catch (e) {
       this.setState({ loading: false, apiError: "Oops, that didn't go through. Try again?" });
@@ -564,8 +572,8 @@ class Component extends DCLogic {
   }
   async finish(skip) {
     const s = this.state, f = s.form;
-    // Name/email ride along so the sheet can still create the row if step 1's row is missing.
-    const payload = { action: 'interests', lead_id: s.leadId, name: f.name.trim(), partner_name: f.partner.trim(), email: f.email.trim(), source: s.source, ...this.utm() };
+    // Name/mobile ride along so the sheet can still create the row if step 1's row is missing.
+    const payload = { action: 'interests', lead_id: s.leadId, name: f.name.trim(), partner_name: f.partner.trim(), mobile: this.mobile(f.mobile) || '', source: s.source, ...this.utm() };
     if (skip) {
       this.track('step2_skip');
       this.api({ ...payload, status: 'skipped' }).catch(() => {});
@@ -664,7 +672,7 @@ class Component extends DCLogic {
       friendAnim: s.dotHappy ? 'bounce .5s .08s ease 3' : 'none', dotHappy: s.dotHappy,
       dotDown: (e) => { e.preventDefault(); this.setState({ dragging: true }); },
       form: s.form, errors: s.errors, apiError: s.apiError, loading: s.loading,
-      setName: setF('name'), setPartner: setF('partner'), setEmail: setF('email'),
+      setName: setF('name'), setPartner: setF('partner'), setMobile: setF('mobile'),
       setCity: (e) => { const v = e.target.value; this.setState({ city: v }, () => this.persist()); }, city: s.city,
       submitInline: (e) => { e.preventDefault(); this.doStep1('final_cta'); },
       submitStep1: (e) => { e.preventDefault(); this.doStep1(s.source); },

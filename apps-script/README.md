@@ -20,8 +20,8 @@ This keeps the same `/exec` URL. Creating a *new deployment* instead gives a new
 
 | Step | What happens |
 |---|---|
-| Name + email submitted | New row: `lead_id`, name, partner, email, source, UTMs, `step2_status = pending` |
+| Name + mobile submitted | New row: `lead_id`, name, partner, mobile, source, UTMs, `step2_status = pending` |
 | Interests submitted | Same row (matched by `lead_id`) gets `interests`, `city`, `step2_status = completed` |
 | "Skip for now" | Same row gets `step2_status = skipped` |
 
-If step 2 can't find its row, it appends a full new row with name and email included.
+If step 2 can't find its row, it appends a full new row with name and mobile included.
